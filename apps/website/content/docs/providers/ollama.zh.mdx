@@ -48,6 +48,18 @@ ollama start
 
 ollama服务器默认地址为：`http://127.0.0.1:11434` 在插件的设置中请求地址已经写好了，API Key 在默认配置启动下可以随意填写，但模型名称必须与 ollama list 列出的名称完全一致。
 
+### LM Studio 与 Ollama 的配置区别
+
+LM Studio 虽然也是本地模型服务，但它暴露的是 OpenAI-compatible API，不能直接按 Ollama provider 配置。连接 LM Studio 时，请在 Read Frog 的 API 提供商里选择 **Custom Provider / 自定义提供商**，而不是 Ollama。
+
+推荐填写方式：
+
+- Base URL：`http://localhost:1234/v1`（如果你在 LM Studio 中修改了端口，请把 `1234` 换成实际端口）
+- API Key：如果未在 LM Studio Developer 界面开启 **Require Authentication**，Read Frog 界面要求填写时可以填任意非空占位值；如果开启了 Require Authentication，请填写 LM Studio 生成的 token
+- 模型名：使用 LM Studio Developer 界面复制出来的 model identifier，例如 `qwen/qwen3-4b-2507`，不要填写本地模型文件名
+
+不要用 Ollama provider 连接 LM Studio：Read Frog 的 Ollama provider 面向 Ollama 默认接口（`http://127.0.0.1:11434/api`），也不适合填写 LM Studio 的认证 token。
+
 ### 2 搜索可用模型
 
 ```bash

@@ -10,6 +10,7 @@ import {
   CONFIG_STORAGE_KEY,
   DEFAULT_CONFIG,
 } from "../constants/config"
+import { buildDefaultProviderConfigList } from "../constants/providers"
 import { logger } from "../logger"
 import { runMigration } from "./migration"
 
@@ -21,6 +22,7 @@ import { runMigration } from "./migration"
 function buildFreshDefaultConfig(): Config {
   return {
     ...DEFAULT_CONFIG,
+    providersConfig: buildDefaultProviderConfigList(),
     selectionToolbar: {
       ...DEFAULT_CONFIG.selectionToolbar,
       customActions: buildDefaultCustomActions(),
